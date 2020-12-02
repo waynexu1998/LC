@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class PerceptronClassifier extends LinearClassifier {
 	
 	public PerceptronClassifier(double[] weights) {
@@ -31,5 +33,10 @@ public class PerceptronClassifier extends LinearClassifier {
 			return 0;
 		}
 	}
-	
+
+	@Override
+	protected void trainingReport(List<Example> examples, int stepnum, int nsteps) {
+		super.trainingReport(examples, stepnum, nsteps);
+		System.out.println(stepnum + "\t" + accuracy(examples));
+	}
 }

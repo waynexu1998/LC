@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Training {
+public class EarthPerceptron {
     public static void main(String[] args) throws FileNotFoundException {
         List<Example> examples = new ArrayList<>();
         examples = readFile(args[0]); //examples

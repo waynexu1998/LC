@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class LogisticClassifier extends LinearClassifier {
 	
 	public LogisticClassifier(double[] weights) {
@@ -15,8 +17,8 @@ public class LogisticClassifier extends LinearClassifier {
 	public void update(double[] x, double y, double alpha) {
 		// This must be implemented by you
 		for(int i=0; i<this.weights.length; i++) {
-			double h_w = threshold(VectorOps.dot(this.weights, x));
-			this.weights[i] = this.weights[i] + alpha*(y - h_w) * x[i] * h_w * (1-h_w);
+			double h = threshold(VectorOps.dot(this.weights, x));
+			this.weights[i] = this.weights[i] + alpha*(y - h) * x[i] * h * (1-h);
 		}
 	}
 	
@@ -30,4 +32,9 @@ public class LogisticClassifier extends LinearClassifier {
 		return 1/(1 + Math.exp(-z));
 	}
 
+	@Override
+	protected void trainingReport(List<Example> examples, int stepnum, int nsteps) {
+		super.trainingReport(examples, stepnum, nsteps);
+		System.out.println(stepnum + "\t" + (1 - squaredErrorPerSample(examples)));
+	}
 }
